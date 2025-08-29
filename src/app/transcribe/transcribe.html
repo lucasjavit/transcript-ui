@@ -1,0 +1,27 @@
+<mat-card class="transcribe-container">
+    <mat-toolbar color="primary">
+      <span>Transcrição de Áudio</span>
+    </mat-toolbar>
+  
+    <div class="upload-section">
+      <input type="file" (change)="onFileSelected($event)" hidden #fileInput />
+      <button mat-raised-button color="accent" (click)="fileInput.click()">Selecionar Arquivo</button>
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!selectedFile || processing">
+        {{ processing ? 'Processando...' : 'Enviar' }}
+      </button>
+    </div>
+  
+    <mat-progress-bar *ngIf="processing" mode="determinate" [value]="progressPercent"></mat-progress-bar>
+  
+    <div *ngIf="!processing && transcription" class="result-section">
+      <h3>Resultado</h3>
+      <mat-card class="response-box">
+        <p>{{ transcription }}</p>
+      </mat-card>
+  
+      <h4>Baixar Transcrição</h4>
+      <button mat-stroked-button color="accent" (click)="download('txt')">TXT</button>
+      <button mat-stroked-button color="accent" (click)="download('srt')">SRT</button>
+    </div>
+  </mat-card>
+  

@@ -1,29 +1,57 @@
-<mat-card class="transcribe-container">
-  <mat-toolbar color="primary" class="toolbar">
-    <span>🎙️ Transcrição de Áudio</span>
-  </mat-toolbar>
-
-  <div class="upload-section">
-    <input type="file" (change)="onFileSelected($event)" hidden #fileInput />
-    <button mat-stroked-button color="accent" (click)="fileInput.click()">Selecionar Arquivo</button>
-
-    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!selectedFile || processing">
-      {{ processing ? 'Processando...' : 'Enviar' }}
-    </button>
-  </div>
-
-  <mat-progress-bar *ngIf="processing" mode="determinate" [value]="progressPercent"></mat-progress-bar>
-
-  <div *ngIf="!processing && transcription" class="result-section">
-    <h3>📝 Resultado</h3>
-    <mat-card class="response-box">
-      <p>{{ transcription }}</p>
-    </mat-card>
-
-    <h4>📥 Baixar Transcrição</h4>
-    <div class="download-buttons">
-      <button mat-stroked-button color="accent" (click)="download('txt')">TXT</button>
-      <button mat-stroked-button color="accent" (click)="download('srt')">SRT</button>
+<div class="page-container">
+  <mat-card class="transcribe-card mat-elevation-z8">
+    <div class="header">
+      <mat-icon class="header-icon">graphic_eq</mat-icon>
+      <h2 class="title">Transcrição de Áudio</h2>
     </div>
-  </div>
-</mat-card>
+
+    <p class="subtitle">
+      Carregue um arquivo de áudio e receba a transcrição de forma simples e rápida.
+    </p>
+
+    <!-- Upload Section -->
+    <div class="upload-section">
+      <input type="file" (change)="onFileSelected($event)" hidden #fileInput />
+
+      <button mat-flat-button color="accent" class="btn-accent" (click)="fileInput.click()">
+        <mat-icon>upload_file</mat-icon>
+        Selecionar Arquivo
+      </button>
+
+      <button mat-raised-button color="primary" class="btn-primary"
+              (click)="onSubmit()"
+              [disabled]="!selectedFile || processing">
+        <mat-icon>send</mat-icon>
+        {{ processing ? 'Processando...' : 'Enviar' }}
+      </button>
+    </div>
+
+    <!-- Progress Bar -->
+    <mat-progress-bar *ngIf="processing"
+                      mode="determinate"
+                      [value]="progressPercent"
+                      class="progress-bar">
+    </mat-progress-bar>
+
+    <!-- Resultado -->
+    <div *ngIf="!processing && transcription" class="result-section">
+      <h3 class="result-title">📝 Resultado</h3>
+
+      <mat-card class="response-box mat-elevation-z4">
+        <p>{{ transcription }}</p>
+      </mat-card>
+
+      <h4 class="download-title">📥 Baixar Transcrição</h4>
+      <div class="download-buttons">
+        <button mat-stroked-button color="accent" class="btn-download" (click)="download('txt')">
+          <mat-icon>description</mat-icon>
+          TXT
+        </button>
+        <button mat-stroked-button color="accent" class="btn-download" (click)="download('srt')">
+          <mat-icon>subtitles</mat-icon>
+          SRT
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

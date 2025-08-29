@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranscribeService } from '../services/transcribe';
@@ -11,7 +12,7 @@ import { TranscribeService } from '../services/transcribe';
 @Component({
   selector: 'app-transcribe',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatCardModule, MatProgressBarModule, MatToolbarModule],
+  imports: [FormsModule, CommonModule, MatCardModule, MatProgressBarModule, MatToolbarModule, MatIconModule],
   templateUrl: './transcribe.html',
   styleUrls: ['./transcribe.scss']
 })

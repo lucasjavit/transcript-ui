@@ -9,45 +9,42 @@
       Carregue um arquivo de áudio e receba a transcrição de forma simples e rápida.
     </p>
 
-    <!-- Upload Section -->
     <div class="upload-section">
       <input type="file" (change)="onFileSelected($event)" hidden #fileInput />
 
-      <button mat-flat-button color="accent" class="btn-accent" (click)="fileInput.click()">
+      <button mat-flat-button class="linkedin-button" (click)="fileInput.click()">
         <mat-icon>upload_file</mat-icon>
         Selecionar Arquivo
       </button>
 
-      <button mat-raised-button color="primary" class="btn-primary"
-              (click)="onSubmit()"
-              [disabled]="!selectedFile || processing">
+      <button mat-flat-button class="linkedin-button"
+              (click)="onSubmit()" [disabled]="!selectedFile || processing">
         <mat-icon>send</mat-icon>
         {{ processing ? 'Processando...' : 'Enviar' }}
       </button>
     </div>
 
-    <!-- Progress Bar -->
     <mat-progress-bar *ngIf="processing"
                       mode="determinate"
                       [value]="progressPercent"
                       class="progress-bar">
     </mat-progress-bar>
 
-    <!-- Resultado -->
     <div *ngIf="!processing && transcription" class="result-section">
-      <h3 class="result-title">📝 Resultado</h3>
+      <h3 class="result-title">Resultado</h3>
 
       <mat-card class="response-box mat-elevation-z4">
         <p>{{ transcription }}</p>
       </mat-card>
 
-      <h4 class="download-title">📥 Baixar Transcrição</h4>
+      <h4 class="download-title">Baixar Transcrição</h4>
       <div class="download-buttons">
-        <button mat-stroked-button color="accent" class="btn-download" (click)="download('txt')">
+        <button mat-flat-button class="linkedin-button" (click)="download('txt')">
           <mat-icon>description</mat-icon>
           TXT
         </button>
-        <button mat-stroked-button color="accent" class="btn-download" (click)="download('srt')">
+
+        <button mat-flat-button class="linkedin-button" (click)="download('srt')">
           <mat-icon>subtitles</mat-icon>
           SRT
         </button>
